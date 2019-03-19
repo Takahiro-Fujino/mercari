@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :first_name, format: { with:/\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/, message: "姓 に数字や特殊文字は使用できません"}, presence: true, unless: :uid?
   validates :last_name_kana, format: { with:/\A[ァ-ンー－]+\Z/, message: "名カナ を入力してください"}, presence: true, unless: :uid?
   validates :first_name_kana,format: { with:/\A[ァ-ンー－]+\Z/, message: "姓カナ を入力してください"}, presence: true, unless: :uid?
-  validates :date_of_birth,format: { with:/\A\d{8}\z/, message: "生年月日8桁を数字で入力してください"},numericality: { greater_than: 19000000, message:"何歳ですか？笑" }, presence: true, unless: :uid?
+  validates :date_of_birth, presence: true, unless: :uid?
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }

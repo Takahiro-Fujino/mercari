@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def search_products
     @q = Product.ransack(params[:q])
-    @products = @q.result(distinct: true)
+    @products = @q.result(distinct: true).includes(:product_images)
   end
 
   def production?

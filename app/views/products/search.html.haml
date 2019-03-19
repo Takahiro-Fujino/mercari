@@ -54,5 +54,7 @@
                 .items-box__price
                   = '￥' + product.price.to_s
                 %p.items-box__tax (税込)
+            -if product.sales_condition == 1
+              %span SOLD OUT
 = render "shared/footer"
 = render "shared/sell-btn"

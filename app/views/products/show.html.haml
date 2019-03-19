@@ -5,7 +5,7 @@
   %h1.item-box__name
     = @product.name
   %p.item-box__sub
-    = "『#{@product.name}』は、24回の取引実績を持つ#{@product.user.nickname}さんから出品されました。アネロ（リュック/バックパック/レディース）の商品で、#{Prefecture.data[@product.ship_from.to_i].fetch(:name)}から#{Shippingday.data[@product.shipping_date.to_i].fetch(:name)}で発送されます。"
+    = "『#{@product.name}』は、24回の取引実績を持つ#{@product.user.nickname}さんから出品されました。#{Prefecture.data[@product.ship_from.to_i].fetch(:name)}から#{Shippingday.data[@product.shipping_date.to_i].fetch(:name)}で発送されます。"
   .item-box__main.clearfix
     .item-box__main-photo
       %ul.thumb-item
@@ -106,7 +106,7 @@
       =link_to '' do
         = fa_icon 'lock'
         %span あんしん・あんぜんのへの取り組み
-  = render "shared/comment"
+  = render "comments/comment"
 .social-media
   %ul.social-media__box
     %li

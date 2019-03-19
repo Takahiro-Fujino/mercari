@@ -10,7 +10,7 @@
         .main-container__buyer
           .main-container__buyer-inner
             .buy-product-image
-              = image_tag "buy-product-image"
+              = image_tag @product.product_images.first.product_image
             %p.buy-product-name
               #{@product.name}
             .buy-product

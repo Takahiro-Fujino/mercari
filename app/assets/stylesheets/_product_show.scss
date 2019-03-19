@@ -23,7 +23,7 @@
       background-color: #fafafa;
       min-width: 300px;
       max-width: 300px;
-      min-height: 375px;
+      min-height: 360px;
       position: relative;
       .thumb-item {
         img {
@@ -33,11 +33,15 @@
       }
       .thumb-item-nav {
         margin: 0;
-        float: left;
+        margin-right: auto;
         opacity: 0.5;
-        img {
-          width: 75px;
-          height: 75px;
+        width:300px;
+        .slick-track{
+          margin-left: 0;
+          img {
+            width: 60px;
+            height: 60px;
+          }
         }
       }
       span{

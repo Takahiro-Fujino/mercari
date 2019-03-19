@@ -47,6 +47,8 @@ class ProductsController < ApplicationController
   end
 
   def search
+    @product = Product.new
+    @product.product_images.build
   end
 
   private
@@ -61,6 +63,7 @@ class ProductsController < ApplicationController
     @condition = Condition.all
     @shippingpay = Shippingpay.all
     @shippingday = Shippingday.all
+    @sales_condition = SalesCondition.all
   end
 
   def move_to_signup

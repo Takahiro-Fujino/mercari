@@ -17,7 +17,14 @@
         =f.text_field :name_cont,class: "input-default"
       .search-left--tool__form
         =f.label :category1_id_eq,"カテゴリーを選択する"
-        =f.collection_select :category1_id_eq, Category1.all, :id, :name, {prompt: "すべて"},class: "input-default"
+        - category1_options = Category1.order(:id).map { |c| [c.name, c.id, data: { children_path: category1_category2s_path(c) }] }
+        = f.select :category1_id_eq, category1_options, { prompt: "---" }, class: 'select-parent select-default'
+        - category2s = @product.category1.try(:category2s) || []
+        - category2_options = category2s.map { |c| [c.name, c.id, data: { path: category1_category2_category3s_path(c) }] }
+        = f.select :category2_id_eq, category2_options, { prompt: "---" }, class: 'select-children select-default', style: "display: none;"
+        - category3s = @product.category2.try(:category3s) || []
+        - category3_options = category3s.map { |c| [c.name, c.id] }
+        = f.select :category3_id_eq, category3_options, { prompt: "---" }, class: 'select-grandchildren select-default', style: "display: none;"
       .search-left--tool__form
         =f.label :price_gteq,"価格"
         =f.number_field :price_gteq,class: "input-default", placeholder: "¥ Min"
@@ -33,6 +40,12 @@
       .search-left--tool__form
         =f.label :postage_in,"配送料の負担",class: "search-left--tool__form__title"
         =f.collection_check_boxes :postage_in, @shippingpay, :id, :name do |b|
+          .search-left--tool__form__checkbox
+            =b.check_box class: "checkbox-default"
+            =b.label class: "label"
+      .search-left--tool__form
+        =f.label :sales_condition_in,"販売状況",class: "search-left--tool__form__title"
+        =f.collection_check_boxes :sales_condition_in, @sales_condition, :id, :name do |b|
           .search-left--tool__form__checkbox
             =b.check_box class: "checkbox-default"
             =b.label class: "label"

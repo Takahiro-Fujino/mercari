@@ -33,7 +33,7 @@
                         = number_with_delimiter(@product.price)
                 %p.has-error-text
                   = form_tag(action: :create, method: :post) do
-                    %script.payjp-button{"data-key": ENV["PAYJP_PUBLIC_KEY"], src: "https://checkout.pay.jp/", type: "text/javascript",class: "paybutton","data-text":  "購入する"}
+                    %script.payjp-button{"data-key": "pk_test_5b4ca32b03f3612ff4b81d01", src: "https://checkout.pay.jp/", type: "text/javascript",class: "paybutton","data-text":  "購入する"}
 
         .main-container__buyer
           .main-container__buyer-inner

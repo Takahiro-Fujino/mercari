@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'payjp'
 
 describe BuysController do
-
   let(:product) { create(:product) }
   let(:user) { create(:user) }
   let(:address) { create(:address) }
@@ -12,7 +11,7 @@ describe BuysController do
     context 'log in' do
       before do
         login user
-        get :new, params:{ product_id: product.id }
+        get :new, params: { product_id: product.id }
       end
 
       it "renders the :new template" do
@@ -28,11 +27,9 @@ describe BuysController do
       end
 
       it 'redirects the root_path' do
-        get :create, params:{ product_id: product.id }
+        get :create, params: { product_id: product.id }
         expect(response).to redirect_to root_path
       end
-
     end
   end
-
 end

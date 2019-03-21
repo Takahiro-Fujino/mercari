@@ -74,5 +74,4 @@ describe User do
       expect(user.errors[:password][0]).to include("is too short")
     end
   end
-
 end

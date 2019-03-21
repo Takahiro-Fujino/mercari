@@ -4,7 +4,7 @@ module PayjpMock
       "amount": 3500,
       "amount_refunded": 0,
       "captured": true,
-      "captured_at": 1433127983,
+      "captured_at": 1_433_127_983,
       "card": {
         "address_city": nil,
         "address_line1": nil,
@@ -14,7 +14,7 @@ module PayjpMock
         "address_zip_check": "unchecked",
         "brand": "Visa",
         "country": nil,
-        "created": 1433127983,
+        "created": 1_433_127_983,
         "customer": nil,
         "cvc_check": "unchecked",
         "exp_month": 2,
@@ -25,7 +25,7 @@ module PayjpMock
         "name": nil,
         "object": "card"
       },
-      "created": 1433127983,
+      "created": 1_433_127_983,
       "currency": "jpy",
       "customer": nil,
       "description": nil,

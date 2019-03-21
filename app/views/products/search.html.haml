@@ -33,19 +33,19 @@
         =f.number_field :price_lteq,class: "input-default", placeholder: "¥ Max"
       .search-left--tool__form
         =f.label :condition_in,"商品の状態",class: "search-left--tool__form__title"
-        =f.collection_check_boxes :condition_in, @condition, :id, :name do |b|
+        =f.collection_check_boxes :condition_in, Condition.all, :id, :name do |b|
           .search-left--tool__form__checkbox
             =b.check_box class: "checkbox-default"
             =b.label class: "label"
       .search-left--tool__form
         =f.label :postage_in,"配送料の負担",class: "search-left--tool__form__title"
-        =f.collection_check_boxes :postage_in, @shippingpay, :id, :name do |b|
+        =f.collection_check_boxes :postage_in, Shippingpay.all, :id, :name do |b|
           .search-left--tool__form__checkbox
             =b.check_box class: "checkbox-default"
             =b.label class: "label"
       .search-left--tool__form
         =f.label :sales_condition_in,"販売状況",class: "search-left--tool__form__title"
-        =f.collection_check_boxes :sales_condition_in, @sales_condition, :id, :name do |b|
+        =f.collection_check_boxes :sales_condition_in, SalesCondition.all, :id, :name do |b|
           .search-left--tool__form__checkbox
             =b.check_box class: "checkbox-default"
             =b.label class: "label"
@@ -55,17 +55,6 @@
   .items-box__container
     %h3 検索結果
     .items-box__content.clearfix
-      - @products.each do |product|
-        %section.items-box
-          =link_to product_path(product) do
-            %figure.items-box__photo
-              = image_tag product.product_images.first.product_image
-            .items-box__body
-              %h3.items-box__name
-                = product.name
-              .items-box__num
-                .items-box__price
-                  = '￥' + product.price.to_s
-                %p.items-box__tax (税込)
+      = render partial: "shared/product_card", collection: @products, as: "product"
 = render "shared/footer"
 = render "shared/sell-btn"

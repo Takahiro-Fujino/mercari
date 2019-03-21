@@ -2,32 +2,32 @@ crumb :root do
   link "メルカリ", root_path
 end
 
-crumb :user do |user|
+crumb :user do |_user|
   link "マイページ", user_path(current_user)
   parent :root
 end
 
-crumb :list do |list|
+crumb :list do |_list|
   link "出品したやつ"
   parent :user
 end
 
-crumb :buy_list do |buy_list|
+crumb :buy_list do |_buy_list|
   link "購入したやつ"
   parent :user
 end
 
-crumb :confirmation do |confirmation|
+crumb :confirmation do |_confirmation|
   link "本人情報"
   parent :user
 end
 
-crumb :profile do |profile|
+crumb :profile do |_profile|
   link "プロフィール"
   parent :user
 end
 
-crumb :card do |card|
+crumb :card do |_card|
   link "支払い方法"
   parent :user
 end
@@ -38,7 +38,7 @@ crumb :product do |product|
 end
 
 crumb :search do |search|
-  link "#{search.name_cont}", products_path(search)
+  link search.name_cont.to_s, products_path(search)
   parent :root
 end
 

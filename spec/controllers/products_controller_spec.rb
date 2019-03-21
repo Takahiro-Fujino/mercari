@@ -60,12 +60,12 @@ describe ProductsController do
         login user
       end
       context 'can save' do
-        subject {
+        subject do
           post :create,
-          params: params
-        }
+               params: params
+        end
         it 'count up message' do
-           expect{ subject }.to change(Product, :count).by(1)
+          expect { subject }.to change(Product, :count).by(1)
         end
         it 'redirects to index' do
           subject
@@ -74,12 +74,12 @@ describe ProductsController do
       end
       context 'can not save' do
         let(:invalid_params) { { user_id: user.id, product: attributes_for(:product, name: nil) } }
-        subject {
+        subject do
           post :create,
-          params: invalid_params
-        }
+               params: invalid_params
+        end
         it 'does not count up' do
-          expect{ subject }.not_to change(Product, :count)
+          expect { subject }.not_to change(Product, :count)
         end
         it 'renders new' do
           subject
@@ -96,7 +96,7 @@ describe ProductsController do
   end
 
   describe 'GET #edit' do
-    before { get :edit, params: { id: product.id } ,session: {} }
+    before { get :edit, params: { id: product.id }, session: {} }
 
     it 'assigns the requested product to @product' do
       expect(assigns(:product)).to eq @product
@@ -105,11 +105,11 @@ describe ProductsController do
 
   describe 'PATCH #update' do
     it "locates the requersted @product" do
-     patch :update, params: {id: product.id}, product: attributes_for(:product)
+      patch :update, params: { id: product.id }, product: attributes_for(:product)
       expect(assigns(:product)).to eq @product
     end
     it "changes @product's attributes" do
-      patch :update, params:{id: product.id}, product: attributes_for(:product, name: 'モンベル スペリオダウンジャケット', product_description: '保温性と軽量性を高次元で両立したジャケット')
+      patch :update, params: { id: product.id }, product: attributes_for(:product, name: 'モンベル スペリオダウンジャケット', product_description: '保温性と軽量性を高次元で両立したジャケット')
       product.reload
       expect(product.name).to eq("モンベル スペリオダウンジャケット")
       expect(product.product_description).to eq("保温性と軽量性を高次元で両立したジャケット")
@@ -125,5 +125,4 @@ describe ProductsController do
       expect(response).to render_template :search
     end
   end
-
 end

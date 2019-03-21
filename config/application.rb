@@ -8,7 +8,6 @@ Bundler.require(*Rails.groups)
 
 module Mercari
   class Application < Rails::Application
-
     config.generators do |g|
       g.stylesheets false
       g.javascripts false

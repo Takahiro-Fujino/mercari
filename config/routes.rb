@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
   root "products#index"
-  devise_for :users, :controllers => {
-    :sessions           => "users/sessions",
-    :registrations      => "users/registrations",
-    :passwords          => "users/passwords",
-    :omniauth_callbacks =>  "users/omniauth_callbacks",
+  devise_for :users, controllers: {
+    sessions: "users/sessions",
+    registrations: "users/registrations",
+    passwords: "users/passwords",
+    omniauth_callbacks: "users/omniauth_callbacks"
   },
-  skip: [:sessions, :registrations]
+                     skip: %i[sessions registrations]
   as :user do
-    #ログイン
+    # ログイン
     get 'login' => 'users/sessions#new', as: :new_user_session
     post 'login' => 'users/sessions#create', as: :user_session
-    #ログアウト
+    # ログアウト
     delete 'logout' => 'users/sessions#destroy', as: :destroy_user_session
-    #サインアップ
+    # サインアップ
     get 'signup' => 'users/registrations#signup'
     get "/signup/registration" => "users/registrations#registration"
     post "signup/number" => "users/registrations#number"
@@ -26,16 +26,16 @@ Rails.application.routes.draw do
   #   delete :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
   # end
   resources :products do
-    resources :buys, only: [:new, :create]
-    resources :comments, only: [:create, :destroy]
-    resources :likes, only: [:create, :destroy]
+    resources :buys, only: %i[new create]
+    resources :comments, only: %i[create destroy]
+    resources :likes, only: %i[create destroy]
     collection do
       get 'search'
     end
   end
   resources :users do
     member do
-     get :following, :followers
+      get :following, :followers
     end
     member do
       get 'logout'
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     end
     resources :lists, only: :index
     resources :buy_lists, only: :index
-    resources :cards, only: [:index, :new, :create]
+    resources :cards, only: %i[index new create]
   end
   get '/users/:id/profile', to: 'users#plofile'
   get '/users/:id/confirmation', to: 'users#confirmation'
@@ -53,5 +53,5 @@ Rails.application.routes.draw do
       resources :category3s, only: :index
     end
   end
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: %i[create destroy]
 end

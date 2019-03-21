@@ -90,6 +90,14 @@
             background: #dc4e41;
             color: #fff;
           }
+          a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+          }
+          a:hover {
+            opacity: 0.8;
+          }
         }
       }
     }

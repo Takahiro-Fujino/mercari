@@ -8,10 +8,10 @@
     .login-form__inner
       %button#facebook-login.btn-default.btn-sns.btn-sns__facebook
         = fa_icon "facebook", class: "btn-sns__icon-facebook"
-        Facebookでログイン
+        = link_to "Facebookで登録", user_facebook_omniauth_authorize_path, method:'post'
       %button#google-login.btn-default.btn-sns.btn-sns__google
         = fa_icon "google", class: "btn-sns__icon-google"
-        Googleでログイン
+        = link_to "Googleで登録", user_google_oauth2_omniauth_authorize_path, method:'post'
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .login-form__inner
         .login-form__inner-group

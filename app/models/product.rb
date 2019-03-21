@@ -6,8 +6,8 @@ class Product < ApplicationRecord
   belongs_to :category1
   belongs_to :category2
   belongs_to :category3
-  has_many :comments
-  has_many :likes
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
 
   validates :name, presence: true, length: { maximum: 40 }

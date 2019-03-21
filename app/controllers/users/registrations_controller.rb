@@ -3,11 +3,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  prepend_before_action :check_captcha, only: [:address, :new_user_session]
+  prepend_before_action :check_captcha, only: %i[address new_user_session]
   prepend_before_action :customize_sign_up_params, only: [:address]
   protect_from_forgery except: :create
-  def registration
-  end
+  def registration; end
 
   def address
     session[:nickname] = params[:session][:nickname]
@@ -43,7 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       last_name_kana: session[:last_name_kana],
       first_name_kana: session[:first_name_kana],
       date_of_birth: session[:date_of_birth]
-      )
+    )
     @user.address = @user.build_address(
       zip_code: session[:zip_code],
       prefecture: session[:prefecture],
@@ -51,10 +50,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       address_line1: session[:address_line1],
       address_line2: session[:address_line2],
       phone_number: session[:phone_number]
-      )
+    )
     @user.credit = @user.build_credit(
       token: token
-      )
+    )
 
     @user.save
     @user.address.save
@@ -62,19 +61,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if session[:user_id] = @user.id
       sign_up(@user, current_user)
-      redirect_to :action => 'done'
+      redirect_to action: 'done'
     else
-      redirect_to :action => 'registration'
+      redirect_to action: 'registration'
     end
-
   end
 
-  def done
-  end
+  def done; end
 
   private
+
   def customize_sign_up_params
-    devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation, :last_name, :first_name, :last_name_kana, :first_name_kana, :date_of_birth]
+    devise_parameter_sanitizer.permit :sign_up, keys: %i[nickname email password password_confirmation last_name first_name last_name_kana first_name_kana date_of_birth]
   end
 
   def check_captcha

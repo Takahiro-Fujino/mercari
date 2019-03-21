@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe ProductImage do
   describe '#create' do
-
     context "全ての要素が入っている時" do
       it "登録可能" do
         product = FactoryBot.create(:product)
@@ -18,6 +17,5 @@ describe ProductImage do
         expect(product_image.errors[:product_image]).to include("can't be blank")
       end
     end
-
   end
 end

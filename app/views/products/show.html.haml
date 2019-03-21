@@ -9,13 +9,9 @@
   .item-box__main.clearfix
     .item-box__main-photo
       %ul.thumb-item
-        - @product.product_images.each do |p|
-          %li
-            = image_tag p.product_image unless p.blank?
+        = render partial: "shared/product_image", collection: @product_images
       %ul.thumb-item-nav
-        - @product.product_images.each do |p|
-          %li
-            = image_tag p.product_image unless p.blank?
+        = render partial: "shared/product_image", collection: @product_images
       -if @product.sales_condition == 1
         %span SOLD OUT
     %table.item-box__main-detail

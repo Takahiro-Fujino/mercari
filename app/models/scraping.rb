@@ -18,7 +18,7 @@ class Scraping
     page = agent.get("https://www.mercari.com/jp/category/")
     element = page.search(".category-list-individual-box-inner-box h4")
     id = 0
-    element.each.with_index(1) do |ele,i|
+    element.each.with_index(1) do |ele, i|
       # 検証用
       # puts ele.inner_text
 
@@ -51,7 +51,7 @@ class Scraping
       when 137..145
         id = 13
       end
-      product = Category2.new(name: ele.inner_text,category1_id: id)
+      product = Category2.new(name: ele.inner_text, category1_id: id)
       product.save
     end
   end

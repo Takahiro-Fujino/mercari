@@ -1,0 +1,14 @@
+%section.items-box
+  =link_to product_path(product) do
+    %figure.items-box__photo
+      = image_tag product.product_images.first.product_image unless product.product_images.blank?
+    .items-box__body
+      %h3.items-box__name
+        = product.name
+      .items-box__num
+        .items-box__price
+          ¥
+          = number_with_delimiter(product.price)
+        %p.items-box__tax (税込)
+    -if product.sales_condition == 1
+      %span SOLD OUT

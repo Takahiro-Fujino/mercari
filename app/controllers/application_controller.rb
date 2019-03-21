@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def search_products
     @q = Product.ransack(params[:q])
-    @products = @q.result(distinct: true)
+    @products = @q.result(distinct: true).includes(:product_images)
   end
 
   def production?
@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :last_name, :first_name, :last_name_kana, :first_name_kana, :date_of_birth])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[nickname last_name first_name last_name_kana first_name_kana date_of_birth])
   end
-
 end

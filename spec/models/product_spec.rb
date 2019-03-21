@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe Product do
   describe '#create' do
-
     context "全ての要素が入っている時" do
       it "登録可能" do
         product = build(:product)
@@ -88,14 +87,14 @@ describe Product do
   describe '#name length' do
     context "nameが40桁の時" do
       it "正しい" do
-        product = FactoryBot.build(:product, name: "a" *40 )
+        product = FactoryBot.build(:product, name: "a" * 40)
         expect(product).to be_valid
       end
     end
 
     context "nameが41桁の時" do
       it "正しくない" do
-        product = FactoryBot.build(:product, name: "a" *41)
+        product = FactoryBot.build(:product, name: "a" * 41)
         expect(product).to be_invalid
       end
     end
@@ -104,14 +103,14 @@ describe Product do
   describe '#product_description length' do
     context "product_descriptionが1000桁の時" do
       it "正しい" do
-        product = FactoryBot.build(:product, product_description: "a" *1000 )
+        product = FactoryBot.build(:product, product_description: "a" * 1000)
         expect(product).to be_valid
       end
     end
 
     context "product_descriptionが1001桁の時" do
       it "正しくない" do
-        product = FactoryBot.build(:product, product_description: "a" *1001)
+        product = FactoryBot.build(:product, product_description: "a" * 1001)
         expect(product).to be_invalid
       end
     end

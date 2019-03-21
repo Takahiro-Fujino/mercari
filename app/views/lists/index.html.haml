@@ -16,15 +16,7 @@
           .tab-content
             %ul
               - if @products
-                = @products.each do |product|
-                  %li
-                    =link_to  "/products/#{product.id}", class: 'mypage-item-link' do
-                      %figure
-                        =image_tag("#{product.product_images.first.product_image}")
-                      .mypage-item-body
-                        %p #{product.name}
-                        %p #{SalesCondition.data[product.sales_condition.to_i].fetch(:name)}
-                      %i.fa.fa-angle-right
+                = render partial: "shared/product_list", collection: @products, as: "product"
               - else
                 %li
                   %a.mypage-item-link

@@ -27,8 +27,9 @@
       position: relative;
       .thumb-item {
         img {
-          width: 300px;
+          width: auto;
           height: 300px;
+          margin: auto;
         }
       }
       .thumb-item-nav {
@@ -39,8 +40,9 @@
         .slick-track{
           margin-left: 0;
           img {
-            width: 60px;
+            width: auto;
             height: 60px;
+            margin: auto;
           }
         }
       }

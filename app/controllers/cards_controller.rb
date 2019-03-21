@@ -1,5 +1,4 @@
 class CardsController < ApplicationController
-
   def index
     @user = User.new
   end
@@ -21,5 +20,4 @@ class CardsController < ApplicationController
     @month = Month.all
     @year = Year.all
   end
-
 end

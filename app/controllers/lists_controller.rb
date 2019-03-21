@@ -10,5 +10,4 @@ class ListsController < ApplicationController
   def move_to_index
     redirect_to '/' unless user_signed_in?
   end
-
 end
